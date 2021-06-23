@@ -1,8 +1,8 @@
 /**
- * 59. 螺旋矩阵 II
+ * question: 59. 螺旋矩阵 II
  * address: https://leetcode-cn.com/problems/spiral-matrix-ii/solution/
  */
-function generateMatrix(n: number): number[][] {
+exports = function generateMatrix(n: number): number[][] {
     const arr = new Array(n).fill(0).map((item) => new Array(n).fill(0));
     let startX = 0;
     let startY = 0;

@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Hao-Tan/algorithm/issues"
   },
-  "homepage": "https://github.com/Hao-Tan/algorithm#readme"
+  "homepage": "https://github.com/Hao-Tan/algorithm#readme",
+  "devDependencies": {
+    "@types/node": "^15.12.4"
+  }
 }
