@@ -8,19 +8,17 @@
  */
 export function serialize(root: TreeNode | null): string {
     let string = [];
-    function traverse(root: TreeNode | null) {
-        if (root === null) {
+    const queue = [root];
+    while (queue.length) {
+        const node = queue.shift();
+
+        if (node === null) {
             string.push('#');
-            return;
         }
 
-        traverse(root.left);
-        traverse(root.right);
-
-        string.push(root.val);
+        queue.push(node.left, node.right);
+        string.push(node.val);
     }
-
-    traverse(root);
 
     return string.join(',');
 }
@@ -30,20 +28,28 @@ export function serialize(root: TreeNode | null): string {
  */
 export function deserialize(data: string): TreeNode | null {
     let string = data.split(',');
-    function traverse(string: string[]) {
-        const val = string.pop();
+    const root = new TreeNode(Number(string[0]));
+    const queue = [root];
+    let i = 1;
 
-        if (val === '#') {
-            return null;
+    while (i < string.length) {
+        const node = queue.shift();
+
+        const left = string[i++];
+        const right = string[i++]
+
+        if (left !== '#') {
+            const leftNode = new TreeNode(Number(left));
+            queue.push(leftNode);
+            node.left = leftNode;
         }
 
-        const node = new TreeNode(Number(val));
-
-        node.right = traverse(string);
-        node.left = traverse(string);
-
-        return node;
+        if (right !== '#') {
+            const rightNode = new TreeNode(Number(right));
+            queue.push(rightNode);
+            node.right = rightNode;
+        }
     }
 
-    return traverse(string);
+    return root;
 }
