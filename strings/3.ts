@@ -16,11 +16,15 @@ export function lengthOfLongestSubstring(s: string): number {
         const count = window.get(tail) || 0;
         window.set(tail, count + 1);
 
-        if(window.get(tail) > 1) {
+        while (window.get(tail) > 1) {
+            const head = s[left];
             left++;
-            if (right - left > maxLen) {
-                maxLen = right - left;
-            }
+            const curr = window.get(head);
+            window.set(head, curr - 1);
+        }
+
+        if (right - left > maxLen) {
+            maxLen = right - left;
         }
     }
     return maxLen;
