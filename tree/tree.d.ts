@@ -8,4 +8,3 @@ declare class TreeNode {
         this.right = right === undefined ? null : right;
     }
 }
-
